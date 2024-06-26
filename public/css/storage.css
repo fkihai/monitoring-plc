@@ -1,0 +1,139 @@
+.text-box {
+    width: 150px;
+    margin-bottom: 10px;
+    color: black;
+}
+.height{
+    background-color: black;
+    color: orange;
+}
+.tank {
+    display: flex;
+    height: 320px;
+    overflow: hidden;
+    /* background: linear-gradient(to bottom, #FFBF5E, #FFA203); */
+    background-color: grey;
+    margin-left: 10px;
+    padding: 10px;
+    align-items: center;
+
+}
+.linetop {
+    height: 10px;
+    background: #33A800;
+    margin-left: 10px;
+}
+.linebottom {
+    height: 40px;
+    overflow: hidden;
+    background: black;
+    margin-left: 10px;
+}
+
+.water-level-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.water-bar {
+    width: 30px;
+    height: 100%;
+    background-color: #e0e0e0;
+    position: relative;
+    margin-right: 10px;
+}
+.water {
+    width: 100%;
+    background-color: rgb(13, 255, 13);
+    position: absolute;
+    bottom: 0;
+}
+.water-bar::before {
+    content: '';
+    position: absolute;
+    left: 35px;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #000 0.2px,
+        #000 2px,
+        transparent 1px,
+        transparent 10%
+    );
+}
+.ruler-labels {
+    display: flex;
+    flex-direction: column;
+    margin-left: 2px;
+    height: 109%;
+    margin-bottom: -1px;
+}
+.ruler-labels div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: #000;
+}
+
+.form-control.number{
+    background-color: aqua;
+    font-weight: 500;
+}
+.form-control.temp{
+    background-color: black;
+    font-weight: 500;
+    color: yellow;
+}
+
+.table{
+    display: flex;
+    margin-left: 20px;
+    margin-top: 70px;
+}
+
+.boxed{
+    overflow: hidden;
+    background: black;
+    margin-left: 10px;
+}
+
+
+.boxed-table{
+    background-color: rgb(17, 227, 255);
+}
+
+.boxed-table.top{
+    color: black;
+    height: 25px;
+    align-items: center;
+}
+.boxed-table.bottom{
+    background-color: #000;
+    color: yellow;
+    height: 25px;
+    align-items: center;
+}
+
+.boxed-item{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.box-table{
+    margin-bottom: 32px;
+}
+
+
+@media (max-width:991px) {
+    .tank{
+        padding-left: 10%;
+    }
+    .table{
+        margin-top: 63px;
+    }
+}

@@ -1,0 +1,116 @@
+.container.wrapper{
+    border: 2px solid black;
+    margin-bottom: 30px;
+}
+
+.box-wrapper{
+    border: 1px solid black;
+    margin: 2px;
+}
+
+.boxtop{
+    background-color: black;
+    height: 30px;
+    padding: 2px;
+    text-align: center;
+    color: yellow;
+}
+
+.body-box{
+    padding-top: 8px;
+    padding-inline-start: 10px;
+    padding-bottom: 10px;
+    height: 30vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+.value{
+    border: 1px solid black;
+}
+
+.value.name{
+    background-color: yellow;
+    color: black;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 12px;
+}
+.value.number{
+    background-color: black;
+    color: yellow;
+    font-size: 12px;
+}
+
+
+.water-level-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+.water-bar {
+    width: 20px;
+    height: 100%;
+    background-color: #e0e0e0;
+    position: relative;
+    margin-right: 10px;
+}
+.water {
+    width: 100%;
+    background-color: rgb(13, 255, 13);
+    position: absolute;
+    bottom: 0;
+}
+.water-bar::before {
+    content: '';
+    position: absolute;
+    left: 22px;
+    top: 0;
+    height: 100%;
+    width: 5px;
+    background: repeating-linear-gradient(
+        to bottom,
+        #000 0.2px,
+        #000 2px,
+        transparent 1px,
+        transparent 6.66%
+    );
+}
+.ruler-labels {
+    display: flex;
+    flex-direction: column;
+    margin: 0px;
+    height: 109%;
+    margin-bottom: -1px;
+}
+.ruler-labels div {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: #000;
+}
+
+
+@media (max-width: 480px) {
+    .water-bar {
+        width: 30px;
+    }
+    .water-bar::before {
+        left: 30px;
+    }
+    .textbox{
+        width: 150px;
+        margin-left: 10px;
+    }
+    .water-level-container {
+        margin-left: 20px;
+    }
+}

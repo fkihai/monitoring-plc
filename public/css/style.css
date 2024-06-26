@@ -1,0 +1,75 @@
+.card{
+    margin-bottom: 20px;
+    background-color: rgb(199, 192, 192);
+    font-weight: 800;
+    color: rgb(0, 0, 0);
+    font-weight: 700;
+}
+
+.container .box {
+    background-color: black; /* Change the color as needed */
+    padding: 10px;
+}
+
+.col h6{
+    color: rgb(221, 214, 214);
+}
+
+.app-header {
+    color: white;
+}
+
+.white-icon {
+    fill: white;
+}
+
+.sidepanel-toggler{
+    margin-left: 10px;
+}
+
+.title-appbar{
+    margin-left: 12px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.table .title {
+    background-color: blue;
+    color: white;
+}
+
+.table .subtitle {
+    background-color: black;
+    color: white;
+}
+
+.cpo {
+    padding: 5px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-control.number{
+    background-color: aqua;
+    font-weight: 500;
+}
+.form-control.temp{
+    background-color: black;
+    font-weight: 500;
+    color: yellow;
+}
+
+.textdata{
+    font-size: 15px;
+    color: white;
+}
+
+canvas {
+    height: 250px;
+}
+
+@media (max-width: 480px) {
+    .title-appbar{
+        font-size: 14px;
+    }
+}
