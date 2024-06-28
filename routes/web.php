@@ -12,3 +12,4 @@ Route::get('/main-engine', [MonitoringController::class, 'mainEngine'])->name('m
 Route::get('/realtime-wartsila', [MonitoringController::class, 'realtimWartsila'])->name('realtime-wartsila');
 Route::get('/realtime-storage', [MonitoringController::class, 'realtimeStorage'])->name('realtime-storage');
 Route::get('/realtime-cargo', [MonitoringController::class, 'realtimeCargo'])->name('realtime-cargo');
+Route::get('/realtime-engine', [MonitoringController::class, 'realtimeEngine'])->name('realtime-engine');

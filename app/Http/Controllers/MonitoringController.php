@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cargo;
+use App\Models\Engine;
 use App\Models\Storage;
 use App\Models\Wartsila;
 use App\Http\Controllers\Controller;;
@@ -71,7 +72,7 @@ class MonitoringController extends Controller
 
     public function mainEngine(){
         $title = 'MAIN ENGINE';
-        $data = Wartsila::orderBy('_dbTime', 'desc')->first();
+        $data = Engine::orderBy('_dbTime', 'desc')->first();
         return view('pages.main-engine', compact('data', 'title'));
     }
 
@@ -107,6 +108,11 @@ class MonitoringController extends Controller
 
     public function realtimeCargo(){
         $data = Cargo::orderBy('_dbTime', 'desc')->first();
+        return response()->json($data);
+    }
+
+    public function realtimeEngine(){
+        $data = Engine::orderBy('_dbTime', 'desc')->first();
         return response()->json($data);
     }
 }
