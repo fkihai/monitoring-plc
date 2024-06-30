@@ -1,15 +1,27 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RealtimeController;
 use App\Http\Controllers\MonitoringController;
+use App\Http\Controllers\CertificateController;
 
 
 Route::get('/', [MonitoringController::class, 'wartsila'])->name('wartsila');
-Route::get('/storage-tank-gauge', [MonitoringController::class, 'storageTankGauge'])->name('storage-tank-gauge');
+Route::get('/storage-tank', [MonitoringController::class, 'storageTank'])->name('storage-tank');
 Route::get('/cargo-tank', [MonitoringController::class, 'cargoTank'])->name('cargo-tank');
 Route::get('/main-engine', [MonitoringController::class, 'mainEngine'])->name('main-engine');
 
-Route::get('/realtime-wartsila', [MonitoringController::class, 'realtimWartsila'])->name('realtime-wartsila');
-Route::get('/realtime-storage', [MonitoringController::class, 'realtimeStorage'])->name('realtime-storage');
-Route::get('/realtime-cargo', [MonitoringController::class, 'realtimeCargo'])->name('realtime-cargo');
-Route::get('/realtime-engine', [MonitoringController::class, 'realtimeEngine'])->name('realtime-engine');
+/* CRUD */
+Route::get('/certificate', [CertificateController::class, 'index'])->name('certificate.index');
+Route::post('/certificate/create', [CertificateController::class, 'store'])->name('certificate.store');
+Route::get('/certificate/create', [CertificateController::class, 'create'])->name('certificate.create');
+Route::get('/certificate/detail/{id}', [CertificateController::class, 'show'])->name('certificate.detail');
+Route::post('/certificate/delete/{id}', [CertificateController::class, 'destroy'])->name('certificate.delete');
+Route::get('/certificate/edit/{id}', [CertificateController::class, 'edit'])->name('certificate.edit');
+
+
+/* Realtime */
+Route::get('/realtime-wartsila', [RealtimeController::class, 'wartsila'])->name('realtime-wartsila');
+Route::get('/realtime-storage', [RealtimeController::class, 'storage'])->name('realtime-storage');
+Route::get('/realtime-cargo', [RealtimeController::class, 'cargo'])->name('realtime-cargo');
+Route::get('/realtime-engine', [RealtimeController::class, 'engine'])->name('realtime-engine');

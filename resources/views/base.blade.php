@@ -28,12 +28,7 @@
 
 </head>
 <body>
-
-    <header class="app-header fixed-top bg-success">
-		@include('components.header')
-        @include('components.sidebar')
-    </header>
-
+    @yield('header')
     <div class="app-wrapper pt-4">
         <div class="app-content pt-5">
             <div class="container">

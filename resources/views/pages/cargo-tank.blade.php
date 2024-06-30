@@ -4,6 +4,13 @@
 <link rel="stylesheet" href="{{asset("css/cargo.css")}}">
 @endsection
 
+@section('header')
+    <header class="app-header fixed-top bg-success">
+        @include('components.header')
+        @include('components.sidebar')
+    </header>
+@endsection
+
 @section('content')
 <div class="container wrapper">
     <div class="row">

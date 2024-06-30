@@ -8,9 +8,6 @@ use App\Models\Storage;
 use App\Models\Wartsila;
 use App\Http\Controllers\Controller;;
 
-
-
-
 class MonitoringController extends Controller
 {
     public function wartsila()
@@ -48,55 +45,15 @@ class MonitoringController extends Controller
         return view('pages.wartsila', compact('data', 'title', 'rpmData', 'pressureData', 'tempData'));
     }
 
-    public function realtimWartsila(){
-        $data =  Wartsila::orderBy('_dbTime', 'desc')->first();
-        $stateDataLength = Wartsila::orderBy('turboRPM', 'desc')->get();
-        $dataLength = 10;
 
-        $parameters = [
-            'turboRPM', 'speedRPM', 'speedRefRPM', 'loadRPM',
-            'airChargePress', 'fuelOilPress', 'ltWaterPress', 'htWaterPress',
-            'crankcasePress', 'airStartPress', 'lubeOilPress',
-            'airChargeTemp', 'fuelOilTemp', 'ltWaterTemp', 'htWaterTemp', 'lubeOilTemp'
-        ];
-
-        $responseData = ['data' => $data];
-        $responseData['stateDataLength'] = $stateDataLength;
-
-        foreach ($parameters as $parameter) {
-            $responseData[$parameter] = Wartsila::orderBy('_dbTime', 'desc')->take($dataLength)->pluck($parameter);
-        }
-
-        return response()->json($responseData);
-    }
-
-    public function mainEngine(){
-        $title = 'MAIN ENGINE';
-        $data = Engine::orderBy('_dbTime', 'desc')->first();
-        return view('pages.main-engine', compact('data', 'title'));
-    }
-
-    public function storageTankGauge()
+    public function storageTank()
     {
         $title = 'STORAGE TANK';
         $data = Storage::where('tank','one')->latest('_dbtime')->first();
         $data2 = Storage::where('tank','two')->latest('_dbtime')->first();
         $data3 = Storage::where('tank','three')->latest('_dbtime')->first();
         $data4 = Storage::where('tank','four')->latest('_dbtime')->first();
-        return view('pages.storage-tank-gauge',compact('data','data2','data3','data4','title'));
-    }
-
-    public function realtimeStorage(){
-        $data = Storage::where('tank','one')->latest('_dbtime')->first();
-        $data2 = Storage::where('tank','two')->latest('_dbtime')->first();
-        $data3 = Storage::where('tank','three')->latest('_dbtime')->first();
-        $data4 = Storage::where('tank','four')->latest('_dbtime')->first();
-        return response()->json([
-            'data1' => $data,
-            'data2' => $data2,
-            'data3' => $data3,
-            'data4' => $data4,
-        ]);
+        return view('pages.storage-tank',compact('data','data2','data3','data4','title'));
     }
 
     public function cargoTank()
@@ -106,13 +63,10 @@ class MonitoringController extends Controller
         return view('pages.cargo-tank',compact('data','title'));
     }
 
-    public function realtimeCargo(){
-        $data = Cargo::orderBy('_dbTime', 'desc')->first();
-        return response()->json($data);
+    public function mainEngine(){
+        $title = 'MAIN ENGINE';
+        $data = Engine::orderBy('_dbTime', 'desc')->first();
+        return view('pages.main-engine', compact('data', 'title'));
     }
 
-    public function realtimeEngine(){
-        $data = Engine::orderBy('_dbTime', 'desc')->first();
-        return response()->json($data);
-    }
 }

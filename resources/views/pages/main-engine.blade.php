@@ -1,5 +1,10 @@
 @extends('base')
-
+@section('header')
+    <header class="app-header fixed-top bg-success">
+        @include('components.header')
+        @include('components.sidebar')
+    </header>
+@endsection
 @section('content')
     <div class="row">
         <div class="col-sm-12 pb-4 col-lg-6 d-flex justify-content-center align-items-center">
