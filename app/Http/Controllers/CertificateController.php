@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Certificate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CertificateController extends Controller
 {
@@ -30,10 +31,24 @@ class CertificateController extends Controller
             'title' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
+            'document' => 'required|mimes:pdf,doc,docx'
         ]);
 
-        Certificate::create($request->all());
-        return redirect()->route('certificate.index');
+        $file  = $request->file('document');
+        $hashName = $file->hashName();
+        $file->storeAs('document',$hashName);
+
+        Certificate::create([
+            'no' => $request->no,
+            'title' => $request->title,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+            'document' => $hashName
+        ]);
+
+        return redirect()->route('certificate.index')
+                         -> with('success', 'Add Successfully');
+
     }
 
     /**
@@ -59,14 +74,44 @@ class CertificateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Certificate $certificate)
+    public function update(Request $request, $id)
     {
-        //
+        $request-> validate([
+            'no' => 'required|numeric',
+            'title' => 'required|string',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date',
+            'document' => 'nullable|mimes:pdf,doc,docx'
+        ]);
+
+        $data = Certificate::findOrFail($id);
+
+        if($request -> hasFile('document')){
+            $file  = $request->file('document');
+            $hashName = $file->hashName();
+            $file->storeAs('document',$hashName);
+
+            if($data->document){
+                Storage::delete('document/'.$data->document);
+            }
+            $data->document = $hashName;
+        }
+
+        $data->no = $request->no;
+        $data->title = $request->title;
+        $data->start_date = $request->start_date;
+        $data->end_date = $request->end_date;
+        $data->save();
+
+        return redirect()->route('certificate.index')
+                         ->with('success','Update Successfully');
     }
 
     public function destroy($id)
     {
-        Certificate::find($id)->delete();
-        return redirect('certificate');
+        $data = Certificate::find($id);
+        Storage::delete('document/'.$data->document);
+        $data->delete();
+        return redirect()->route('certificate.index');
     }
 }

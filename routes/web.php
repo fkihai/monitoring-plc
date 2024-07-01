@@ -18,7 +18,7 @@ Route::get('/certificate/create', [CertificateController::class, 'create'])->nam
 Route::get('/certificate/detail/{id}', [CertificateController::class, 'show'])->name('certificate.detail');
 Route::post('/certificate/delete/{id}', [CertificateController::class, 'destroy'])->name('certificate.delete');
 Route::get('/certificate/edit/{id}', [CertificateController::class, 'edit'])->name('certificate.edit');
-
+Route::post('/certificate/update/{id}', [CertificateController::class, 'update'])->name('certificate.update');
 
 /* Realtime */
 Route::get('/realtime-wartsila', [RealtimeController::class, 'wartsila'])->name('realtime-wartsila');

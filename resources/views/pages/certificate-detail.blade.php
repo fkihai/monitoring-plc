@@ -21,15 +21,28 @@
 
 
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6">
             <label class="form-style mb-1 fw-bold fs-6" for="start_date">Start Date</label>
             <input autocomplete="off" type="date" class="form-control form-style mb-2" id="start_date" name="start_date" disabled value="{{$data->start_date}}">
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <label class="form-style mb-1 fw-bold fs-6" for="end_date">End Date</label>
             <input autocomplete="off" type="date" class="form-control form-style mb-2" id="end_date" name="end_date" disabled value="{{$data->end_date}}">
         </div>
     </div>
+
+    <div class="row">
+        <di class="col">
+            <label class="form-style mb-1 fw-bold fs-6" for="document">Document</label>
+            <a class="d-flex" target="blank" href="{{ Storage::url('document/'. $data->document) }}">
+                <img src="{{asset('img/doc-logo.png')}}" width="70" height="70" alt="">
+            </a>
+        </di>
+    </div>
+
+
+    <a href="{{route('certificate.detail',$data->id)}}">
+
     <form action="{{ route('certificate.delete', $data->id) }}" method="post">
         @csrf
         <a href="{{ route('certificate.index') }}" class="btn btn-info mt-3">Home</a>

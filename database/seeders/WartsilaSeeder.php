@@ -15,7 +15,7 @@ class WartsilaSeeder extends Seeder
     public function run(): void
     {
         Wartsila::factory(1)->create();
-        Certificate::factory(1)->create();
+        // Certificate::factory(1)->create();
         Cargo::factory(1)->create();
         Engine::factory(1)->create();
         Storage::factory()->withDifferentEnums()->count(4)->create();

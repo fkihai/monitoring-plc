@@ -12,6 +12,7 @@ class Certificate extends Model
         'no',
         'title',
         'start_date',
-        'end_date'
+        'end_date',
+        'document'
     ];
 }
