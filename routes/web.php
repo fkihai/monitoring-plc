@@ -1,10 +1,11 @@
 <?php
 
+use App\Mail\SendMail;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RealtimeController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\CertificateController;
-
+use App\Mail\LaravelSMTPConfiguration;
 
 Route::get('/', [MonitoringController::class, 'wartsila'])->name('wartsila');
 Route::get('/storage-tank', [MonitoringController::class, 'storageTank'])->name('storage-tank');
@@ -25,3 +26,23 @@ Route::get('/realtime-wartsila', [RealtimeController::class, 'wartsila'])->name(
 Route::get('/realtime-storage', [RealtimeController::class, 'storage'])->name('realtime-storage');
 Route::get('/realtime-cargo', [RealtimeController::class, 'cargo'])->name('realtime-cargo');
 Route::get('/realtime-engine', [RealtimeController::class, 'engine'])->name('realtime-engine');
+
+Route::get('/testroute', function() {
+    //The email sending is done using the to method on the Mail facade
+    Mail::to('fikrihaikal568@gmail.com')->send(new LaravelSMTPConfiguration());
+});
+
+
+
+
+
+// Route::get('/send-',function(){
+//     $data = [
+//         'name' => 'Fikri Haikal',
+//         'body' => 'Testing Kirim Email di Monitoring PLC'
+//     ];
+
+//     Mail::to('fikrihaikal568@gmail.com')->send(new SendMail($data));
+
+//     dd("Email Berhasil dikirim.");
+// });
