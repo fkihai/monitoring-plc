@@ -1,15 +1,54 @@
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Certificate Expiring Soon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .certificate-list {
+            margin-top: 20px;
+        }
+        .certificate-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .certificate-item:last-child {
+            border-bottom: none;
+        }
+    </style>
 </head>
 <body>
-    <p>
-        Hallo Bro !!!
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Impedit officia natus aperiam dicta nihil similique sint ipsam perferendis facere fugit, veritatis accusamus libero aliquid alias incidunt. Cupiditate labore nulla voluptate!
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illo eveniet quis cupiditate autem illum sint molestiae, exercitationem odio et excepturi praesentium voluptate enim accusantium quisquam vitae, accusamus architecto laboriosam recusandae.
-    </p>
+    <div class="container">
+        <h1>Daftar Sertifikat yang Akan Berakhir</h1>
+        <p>Dear User,</p>
+        <p>Berikut adalah daftar sertifikat yang akan berakhir dalam waktu dekat:</p>
+
+        <div class="certificate-list">
+            @foreach ($allExpiredCertif as $certificate)
+                <div class="certificate-item">
+                    <h3>{{ $certificate->title }}</h3>
+                    <p>Tanggal Kadaluarsa: <strong>{{ \Carbon\Carbon::parse($certificate->end_date)->format('d M Y') }}</strong></p>
+                    <p>Sisa Hari: <strong>{{$certificate->days_until_expiry * -1}}</strong> hari</p>
+                </div>
+            @endforeach
+        </div>
+
+        <p>Mohon segera melakukan tindakan yang diperlukan untuk memperbarui atau mengganti sertifikat sebelum kedaluwarsa.</p>
+
+        <p>Terima kasih,</p>
+        <p>PT TEKNOLOGI</p>
+    </div>
 </body>
 </html>

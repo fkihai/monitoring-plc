@@ -10,16 +10,17 @@ use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Queue\SerializesModels;
 
-class LaravelSMTPConfiguration extends Mailable
+class ExpiryCertificatMail extends Mailable
 {
     use Queueable, SerializesModels;
+    public $allExpiredCertif;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct($allExpiredCertif)
     {
-        //
+        $this->allExpiredCertif = $allExpiredCertif;
     }
 
     /**
@@ -28,7 +29,7 @@ class LaravelSMTPConfiguration extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('mailtrap@demomailtrap.com', 'Monitoring PLC'),
+            from: new Address('admin@belajarobot.com', 'Monitoring PLC'),
             subject: 'Certificate Expired',
         );
     }
@@ -40,6 +41,9 @@ class LaravelSMTPConfiguration extends Mailable
     {
         return new Content(
             view: 'emails.sendemail',
+            with: [
+                'allExpiredCertif' => $this-> allExpiredCertif,
+            ]
         );
     }
 

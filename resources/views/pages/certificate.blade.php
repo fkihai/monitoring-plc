@@ -22,6 +22,7 @@
                     <th scope="col">Nama</th>
                     <th scope="col">Tanggal Dikeluarkan</th>
                     <th scope="col">Tanggal Berakhir</th>
+                    <th scope="col">Expiry</th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -39,6 +40,8 @@
                         <td class="pt-3  ">{{$data->title}}</td>
                         <td class="pt-3  ">{{$data->start_date}}</td>
                         <td class="pt-3  ">{{$data->end_date}}</td>
+                        <td class="pt-3  ">
+                            {{$data->days_until_expiry}}</td>
                         <td>
                             <a href="{{route('certificate.detail',$data->id)}}">
                             <button type="button" class="btn btn-info">Detail</button>

@@ -1,11 +1,12 @@
 <?php
 
 use App\Mail\SendMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use App\Mail\LaravelSMTPConfiguration;
 use App\Http\Controllers\RealtimeController;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\CertificateController;
-use App\Mail\LaravelSMTPConfiguration;
 
 Route::get('/', [MonitoringController::class, 'wartsila'])->name('wartsila');
 Route::get('/storage-tank', [MonitoringController::class, 'storageTank'])->name('storage-tank');
@@ -33,16 +34,3 @@ Route::get('/testroute', function() {
 });
 
 
-
-
-
-// Route::get('/send-',function(){
-//     $data = [
-//         'name' => 'Fikri Haikal',
-//         'body' => 'Testing Kirim Email di Monitoring PLC'
-//     ];
-
-//     Mail::to('fikrihaikal568@gmail.com')->send(new SendMail($data));
-
-//     dd("Email Berhasil dikirim.");
-// });
