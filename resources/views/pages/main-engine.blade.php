@@ -108,7 +108,7 @@
                                 </div>
                                 <div class="card-body m-1 p-2">
                                     <div class="container box">
-                                        <span class="text-primary" id="engineSpeed">{{$data->engineSpeed}} ° C</span>
+                                        <span class="text-primary" id="engineSpeed">{{$data->engineSpeed}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -120,7 +120,7 @@
                                 </div>
                                 <div class="card-body m-1 p-2">
                                     <div class="container box">
-                                        <span class="text-primary" id="crankcase">{{$data->crankcase}} ° C</span>
+                                        <span class="text-primary" id="crankcase">{{$data->crankcase}}</span>
                                     </div>
                                 </div>
                             </div>

@@ -33,27 +33,27 @@ $(document).ready(function() {
             success: function(data) {
                 // one
                 $('#_dbTime').text(parseDateTime(data._dbTime));
-                $('#ea1').text(data.ea1);
-                $('#ea2').text(data.ea2);
-                $('#ea3').text(data.ea3);
-                $('#ea4').text(data.ea4);
-                $('#ea5').text(data.ea5);
-                $('#ea6').text(data.ea6);
+                $('#ea1').text(`${data.ea1} \u00B0 C`);
+                $('#ea2').text(`${data.ea2} \u00B0 C`);
+                $('#ea3').text(`${data.ea3} \u00B0 C`);
+                $('#ea4').text(`${data.ea4} \u00B0 C`);
+                $('#ea5').text(`${data.ea5} \u00B0 C`);
+                $('#ea6').text(`${data.ea6} \u00B0 C`);
 
-                $('#la1').text(data.la1);
-                $('#la2').text(data.la2);
-                $('#la3').text(data.la3);
-                $('#la4').text(data.la4);
-                $('#la5').text(data.la5);
-                $('#la6').text(data.la6);
+                $('#la1').text(`${data.la1} \u00B0 C`);
+                $('#la2').text(`${data.la2} \u00B0 C`);
+                $('#la3').text(`${data.la3} \u00B0 C`);
+                $('#la4').text(`${data.la4} \u00B0 C`);
+                $('#la5').text(`${data.la5} \u00B0 C`);
+                $('#la6').text(`${data.la6} \u00B0 C`);
 
 
-                $('#ba1').text(data.ba1);
-                $('#ba2').text(data.ba2);
-                $('#ba3').text(data.ba3);
-                $('#ba4').text(data.ba4);
-                $('#ba5').text(data.ba5);
-                $('#ba6').text(data.ba6);
+                $('#ba1').text(`${data.ba1} \u00B0 C`);
+                $('#ba2').text(`${data.ba2} \u00B0 C`);
+                $('#ba3').text(`${data.ba3} \u00B0 C`);
+                $('#ba4').text(`${data.ba4} \u00B0 C`);
+                $('#ba5').text(`${data.ba5} \u00B0 C`);
+                $('#ba6').text(`${data.ba6} \u00B0 C`);
 
                 $('#engineSpeed').text(data.engineSpeed);
                 $('#crankcase').text(data.crankcase);

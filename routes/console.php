@@ -33,4 +33,4 @@ Artisan::command('expiredNotification',function(){
 
 
 /* SCHEDULE TASK */
-Schedule::command('expiredNotification')->everyTenMinutes();
+Schedule::command('expiredNotification')->daily();
