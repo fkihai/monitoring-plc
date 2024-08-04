@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\Wartsila;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\WartsilaResource;
+use App\Http\Resources\MonitoringResource;
 use Illuminate\Support\Facades\Validator;
 
 class WartsilaController extends Controller
@@ -14,22 +14,25 @@ class WartsilaController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'turbo' => 'required',
-            'cAirBar' => 'required',
-            'cAirTemp' => 'required',
-            'speed' => 'required',
-            'speedRef' => 'required',
-            'load' => 'required',
-            'fOilBar' => 'required',
-            'fOilTemp' => 'required',
-            'ltWaterBar' => 'required',
+            '_dbTime' => 'required',
+            '_terminalTime' => 'required',
+            '_groupName' => 'required',
+            'turboRPM' => 'required',
+            'airChargePress' => 'required',
+            'airChargeTemp' => 'required',
+            'speedRPM' => 'required',
+            'speedRefRPM' => 'required',
+            'loadRPM' => 'required',
+            'fuelOilPress' => 'required',
+            'fuelOilTemp' => 'required',
+            'ltWaterPress' => 'required',
             'ltWaterTemp' => 'required',
-            'htWaterBar' => 'required',
+            'htWaterPress' => 'required',
             'htWaterTemp' => 'required',
-            'crankcase' => 'required',
-            'startAir' => 'required',
-            'lOilBar' => 'required',
-            'lOilTemp' => 'required',
+            'crankcasePress' => 'required',
+            'airStartPress' => 'required',
+            'lubeOilPress' => 'required',
+            'lubeOilTemp' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -37,6 +40,6 @@ class WartsilaController extends Controller
         }
 
         $data = Wartsila::create($request->all());
-        return new WartsilaResource(true,'data add success',$data);
+        return new MonitoringResource(true,'data add success',$data);
     }
 }

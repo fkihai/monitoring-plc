@@ -61,7 +61,7 @@ function parseDateTime(dateTimeString) {
                 console.error("Error fetching data: " + error);
             }
         });
-    }, 1000); // 60000 milliseconds = 1 minute
+    }, 10000); // 60000 milliseconds = 1 minute
 });
 
 function rpmChart(data){

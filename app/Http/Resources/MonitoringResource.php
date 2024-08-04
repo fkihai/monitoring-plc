@@ -5,9 +5,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class WartsilaResource extends JsonResource
+class MonitoringResource extends JsonResource
 {
-
     public $status;
     public $message;
     public $resource;

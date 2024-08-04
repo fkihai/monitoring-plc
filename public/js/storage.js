@@ -102,5 +102,5 @@ function parseDateTime(dateTimeString) {
                 console.error("Error fetching data: " + error);
             }
         });
-    }, 1000); // 1000 milliseconds = 1 seconds
+    }, 10000); // 1000 milliseconds = 1 seconds
 });
