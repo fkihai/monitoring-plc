@@ -31,7 +31,7 @@ class CertificateController extends Controller
             'title' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'document' => 'required|mimes:pdf,doc,docx'
+            'document' => 'required|mimes:pdf,doc,docx|max:200'
         ]);
 
         $file  = $request->file('document');
@@ -81,7 +81,7 @@ class CertificateController extends Controller
             'title' => 'required|string',
             'start_date' => 'required|date',
             'end_date' => 'required|date',
-            'document' => 'nullable|mimes:pdf,doc,docx'
+            'document' => 'required|mimes:pdf,doc,docx|max:200'
         ]);
 
         $data = Certificate::findOrFail($id);

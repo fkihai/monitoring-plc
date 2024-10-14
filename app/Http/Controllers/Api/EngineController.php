@@ -15,36 +15,42 @@ class EngineController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'ea1' => 'required',
-            'ea2' => 'required',
-            'ea3' => 'required',
-            'ea4' => 'required',
-            'ea5' => 'required',
-            'ea6' => 'required',
+            'data.*._dbTime' => 'required',
+            'data.*._terminalTime' => 'required',
+            'data.*._groupName' => 'required',
+            'data.*.ea1' => 'required',
+            'data.*.ea2' => 'required',
+            'data.*.ea3' => 'required',
+            'data.*.ea4' => 'required',
+            'data.*.ea5' => 'required',
+            'data.*.ea6' => 'required',
 
-            'la1' => 'required',
-            'la2' => 'required',
-            'la3' => 'required',
-            'la4' => 'required',
-            'la5' => 'required',
-            'la6' => 'required',
+            'data.*.la1' => 'required',
+            'data.*.la2' => 'required',
+            'data.*.la3' => 'required',
+            'data.*.la4' => 'required',
+            'data.*.la5' => 'required',
+            'data.*.la6' => 'required',
 
-            'ba1' => 'required',
-            'ba2' => 'required',
-            'ba3' => 'required',
-            'ba4' => 'required',
-            'ba5' => 'required',
-            'ba6' => 'required',
+            'data.*.ba1' => 'required',
+            'data.*.ba2' => 'required',
+            'data.*.ba3' => 'required',
+            'data.*.ba4' => 'required',
+            'data.*.ba5' => 'required',
+            'data.*.ba6' => 'required',
 
-            'engineSpeed' => 'required',
-            'crankcase' => 'required',
+            'data.*.engineSpeed' => 'required',
+            'data.*.crankcase' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json('Error: Periksa Data Anda', 422);
+            return response()->json(['error' => 'Error: Periksa Data Anda', 'details' => $validator->errors()], 422);
         }
 
-        $data = Engine::create($request->all());
+        $data = $request->input('data');
+        foreach ($data as $item) {
+            Engine::create($item);
+        }
         return new MonitoringResource(true,'data add success',$data);
     }
 }

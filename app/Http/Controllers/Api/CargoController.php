@@ -15,44 +15,49 @@ class CargoController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            '_dbTime' => 'required',
-            '_terminalTime' => 'required',
-            '_groupName' => 'required',
-            'ullageTkP' => 'required',
-            'avgTmpTkP' => 'required',
-            'ullageCot6P' => 'required',
-            'avgTmpCot6P' => 'required',
-            'ullageCot5P' => 'required',
-            'avgTmpCot5P' => 'required',
-            'ullageCot4P' => 'required',
-            'avgTmpCot4P' => 'required',
-            'ullageCot3P' => 'required',
-            'avgTmpCot3P' => 'required',
-            'ullageCot2P' => 'required',
-            'avgTmpCot2P' => 'required',
-            'ullageCot1P' => 'required',
-            'avgTmpCot1P' => 'required',
-            'ullageTkS' => 'required',
-            'avgTmpTkS' => 'required',
-            'ullageCot6S' => 'required',
-            'avgTmpCot6S' => 'required',
-            'ullageCot5S' => 'required',
-            'avgTmpCot5S' => 'required',
-            'ullageCot4S' => 'required',
-            'avgTmpCot4S' => 'required',
-            'ullageCot3S' => 'required',
-            'avgTmpCot3S' => 'required',
-            'ullageCot2S' => 'required',
-            'avgTmpCot2S' => 'required',
-            'ullageCot1S' => 'required',
-            'avgTmpCot1S' => 'required',
+            'data.*._dbTime' => 'required',
+            'data.*._terminalTime' => 'required',
+            'data.*._groupName' => 'required',
+            'data.*.ullageTkP' => 'required',
+            'data.*.avgTmpTkP' => 'required',
+            'data.*.ullageCot6P' => 'required',
+            'data.*.avgTmpCot6P' => 'required',
+            'data.*.ullageCot5P' => 'required',
+            'data.*.avgTmpCot5P' => 'required',
+            'data.*.ullageCot4P' => 'required',
+            'data.*.avgTmpCot4P' => 'required',
+            'data.*.ullageCot3P' => 'required',
+            'data.*.avgTmpCot3P' => 'required',
+            'data.*.ullageCot2P' => 'required',
+            'data.*.avgTmpCot2P' => 'required',
+            'data.*.ullageCot1P' => 'required',
+            'data.*.avgTmpCot1P' => 'required',
+            'data.*.ullageTkS' => 'required',
+            'data.*.avgTmpTkS' => 'required',
+            'data.*.ullageCot6S' => 'required',
+            'data.*.avgTmpCot6S' => 'required',
+            'data.*.ullageCot5S' => 'required',
+            'data.*.avgTmpCot5S' => 'required',
+            'data.*.ullageCot4S' => 'required',
+            'data.*.avgTmpCot4S' => 'required',
+            'data.*.ullageCot3S' => 'required',
+            'data.*.avgTmpCot3S' => 'required',
+            'data.*.ullageCot2S' => 'required',
+            'data.*.avgTmpCot2S' => 'required',
+            'data.*.ullageCot1S' => 'required',
+            'data.*.avgTmpCot1S' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json('Error: Periksa Data Anda', 422);
+            return response()->json(['error' => 'Error: Periksa Data Anda', 'details' => $validator->errors()], 422);
         }
 
-        $data = Cargo::create($request->all());
+        $data = $request->input('data');
+
+        foreach ($data as $item) {
+            Cargo::create($item);
+        }
+
         return new MonitoringResource(true,'data add success',$data);
     }
 }

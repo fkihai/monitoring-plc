@@ -14,26 +14,32 @@ class StorageController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'tank' => 'required|in:one,two,three,four',
-            'heightOfCPO' => 'required',
-            'tStorageWhen0M' => 'required',
-            'tStorageWhen1M' => 'required',
-            'tStorageWhen2M' => 'required',
-            'tStorageWhen3M' => 'required',
-            'tStorageWhen4M' => 'required',
-            'tStorageWhen5M' => 'required',
-            'tStorageWhen6M' => 'required',
-            'tStorageWhen7M' => 'required',
-            'factorKoreksi' => 'required',
-            'density' => 'required',
-            'EstimasiStok' => 'required',
+            'data.*._dbTime' => 'required',
+            'data.*._terminalTime' => 'required',
+            'data.*._groupName' => 'required',
+            'data.*.tank' => 'required|in:one,two,three,four',
+            'data.*.heightOfCPO' => 'required',
+            'data.*.tStorageWhen0M' => 'required',
+            'data.*.tStorageWhen1M' => 'required',
+            'data.*.tStorageWhen2M' => 'required',
+            'data.*.tStorageWhen3M' => 'required',
+            'data.*.tStorageWhen4M' => 'required',
+            'data.*.tStorageWhen5M' => 'required',
+            'data.*.tStorageWhen6M' => 'required',
+            'data.*.tStorageWhen7M' => 'required',
+            'data.*.factorKoreksi' => 'required',
+            'data.*.density' => 'required',
+            'data.*.EstimasiStok' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return response()->json('Error: Periksa Data Anda', 422);
+            return response()->json(['error' => 'Error: Periksa Data Anda', 'details' => $validator->errors()], 422);
         }
 
-        $data = Storage::create($request->all());
+        $data = $request->input('data');
+        foreach ($data as $item) {
+            Storage::create($item);
+        }
         return new MonitoringResource(true,'data add success',$data);
     }
 }
